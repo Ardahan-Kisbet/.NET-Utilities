@@ -6,6 +6,7 @@ using System.Runtime.InteropServices.ComTypes;
 
 namespace CSharpUtility.Helpers
 {
+    // Example on code project https://www.codeproject.com/Articles/7984/Automating-a-specific-instance-of-Visual-Studio-NE
     class RunningObjectTableHelper
     {
         /// <summary>
@@ -117,10 +118,10 @@ namespace CSharpUtility.Helpers
                             {
                                 runningIDEInstances[candidateName] = ide;
                             }
-                            break;                           
+                            break;
                         default:
                             break;
-                    }        
+                    }
                 }
                 return runningIDEInstances;
             }
