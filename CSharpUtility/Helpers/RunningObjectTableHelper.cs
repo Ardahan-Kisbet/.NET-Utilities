@@ -89,20 +89,20 @@ namespace CSharpUtility.Helpers
                     switch (_ide)
                     {
                         case IDE.Rhapsody:
-                            ide = rotEnumerator.Value as rhapsody.RPApplication;
-                            if (openSolutionsOnly)
-                            {
-                                // Unboxing is necessary in here
-                                if (((rhapsody.RPApplication)ide).activeProject() != null)
-                                {
-                                    runningIDEInstances[candidateName] = ide;
-                                }
-                            }
-                            else
-                            {
-                                runningIDEInstances[candidateName] = ide;
-                            }
-                            break;
+                            //ide = rotEnumerator.Value as rhapsody.RPApplication;
+                            //if (openSolutionsOnly)
+                            //{
+                            //    // Unboxing is necessary in here
+                            //    if (((rhapsody.RPApplication)ide).activeProject() != null)
+                            //    {
+                            //        runningIDEInstances[candidateName] = ide;
+                            //    }
+                            //}
+                            //else
+                            //{
+                            //    runningIDEInstances[candidateName] = ide;
+                            //}
+                            //break;
                         case IDE.VisualStudio:
                             ide = rotEnumerator.Value as _DTE;
                             if (openSolutionsOnly)
