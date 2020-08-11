@@ -9,10 +9,9 @@ namespace CSharpUtility
     {
         static void Main(string[] args)
         {
-            //Console.WriteLine("Hello World!");
             //Helpers.RunningObjectTableHelper.ROTHelper.GetIDEInstances(true, Helpers.RunningObjectTableHelper.ROTHelper.IDE.VisualStudio);
 
-            // micro service yazılabilir heroku sitesini ayakta tutmak için
+            // Make a microservice to keep Heroku Dyno Alive
             //HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create("https://ardahan.herokuapp.com");
             //request.AllowAutoRedirect = false; // find out if this site is up and don't follow a redirector
             //request.Method = System.Net.WebRequestMethods.Http.Head;
@@ -26,12 +25,10 @@ namespace CSharpUtility
             //    //set flag if there was a timeout or some other issues
             //}
 
-            // Algoritma Çalışmaları
             Algorithms.Algorithms algoCls = new Algorithms.Algorithms();
             int[] src = { 1, 2, 3, 7, 5 };
             int sum = 12;
             int[] result = algoCls.findLongestSubarrayBySum(src, sum);
-
         }
     }
 }
