@@ -15,7 +15,7 @@ namespace CSharpUtility.Helpers
         Excel.Range xlRange = null;
 
         /// <summary>
-        /// Disposes the all excel com interfaces/references
+        /// Disposes all excel com interfaces/references
         /// </summary>
         public void Dispose()
         {
@@ -39,7 +39,6 @@ namespace CSharpUtility.Helpers
                 xlWorkSheets = null;
             }
 
-
             if (xlWorkBook != null)
             {
                 Marshal.ReleaseComObject(xlWorkBook);
@@ -61,7 +60,6 @@ namespace CSharpUtility.Helpers
 
             GC.Collect();
             GC.WaitForPendingFinalizers();
-
         }
 
         /// <summary>
@@ -78,9 +76,10 @@ namespace CSharpUtility.Helpers
                 {
                     #region Create Excel on Server
                     object misValue = System.Reflection.Missing.Value;
-                    // Hepsinin tek tek referanslarını tutmak gerekiyor yoksa tam anlamıyla release edemiyoruz com objesini.
-                    // Bu yüzden . ile peş peşe bağlama yapma!
-                    // xlWorkBook = xlApp.Workbooks.Add(misValue) gibi kullanmak yerine WorkBooks referansını başka objeye al. Bu şekilde kullanınca WorkBooks referansını tutmadan RCW'ye eklemiş oluyoruz.
+                    // We have to keep each excel elements' references individually, otherwise we cannot be able to dispose (release resources) of sub elements
+                    // Hence this usage should be prevented 
+                    // xlWorkBook = xlApp.Workbooks.Add(misValue)
+                    // WorkBooks reference should be kept as seperate object. Otherwise it will add WorkBooks to RCW and we will not have its reference in a variable
                     // Explanations in here --> https://stackoverflow.com/questions/17367411/cannot-close-excel-exe-after-interop-process/17367570#17367570
                     xlWorkBooks = xlApp.Workbooks;
                     xlWorkBook = xlWorkBooks.Add(misValue);
@@ -98,8 +97,10 @@ namespace CSharpUtility.Helpers
                     xlWorkBook.SaveAs(tempPath, Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
                     tempPath = xlWorkBook.FullName;
                     xlWorkBook.Close(true, misValue, misValue);
+                    
                     // we have byte array. Send it as response to where neeeded
                     result = System.IO.File.ReadAllBytes(tempPath);
+                    
                     // Do not forget to delete temporary excel file created on server file system
                     System.IO.File.Delete(tempPath);
                     #endregion
