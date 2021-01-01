@@ -144,5 +144,64 @@ namespace CSharpUtility.Algorithms
 
             return -1;
         }
+
+        public void BFS(int src)
+        {
+            // O(V + E) time
+            // O(V) space (for visited array)
+            Queue<int> queue = new Queue<int>();
+            bool[] visited = new bool[5];
+            int[][] adjacent = new int[5][];
+
+            visited[src] = true;
+            queue.Enqueue(src);
+            int current;
+            while (queue.Any())
+            {
+                current = queue.Dequeue();
+                Console.WriteLine(current);
+                int[] currentAdjacents = adjacent[current];
+                foreach (int adj in currentAdjacents)
+                {
+                    if(visited[adj] == false)
+                    {
+                        visited[adj] = true;
+                        queue.Enqueue(adj);
+                    }
+                }
+            }
+        }
+
+        public int V;
+        public int[] adjacents;
+        public void DFS()
+        {
+            // visited array for all vertices
+            bool[] visited = new bool[V];
+
+            for (int i = 0; i < V; i++)
+            {
+                if(visited[i] == false)
+                {
+                    DFSUtil(i, visited);
+                }
+            }
+
+        }
+
+        public void DFSUtil(int v, bool[] visited)
+        {
+            visited[v] = true;
+            Console.WriteLine(v);
+
+            foreach (var adj in adjacents)
+            {
+                if(visited[adj] == false)
+                {
+                    DFSUtil(adj, visited);
+                }
+            }
+        }
     }
+
 }
