@@ -202,6 +202,36 @@ namespace CSharpUtility.Algorithms
                 }
             }
         }
+
+        /// <summary>
+        /// 58. Length of Last Word (Easy)
+        /// </summary>
+        /// <description>
+        /// Given a string s consists of some words separated by spaces, return the length of the last word in the string. If the last word does not exist, return 0.
+        /// A word is a maximal substring consisting of non-space characters only.
+        /// Example 1:
+        /// Input: s = "Hello World"
+        /// Output: 5
+        /// Example 2:
+        /// Input: s = " "
+        /// Output: 0
+        /// Constraints:
+        /// 1 <= s.length <= 104
+        /// s consists of only English letters and spaces ' '.
+        /// </description>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public int LengthOfLastWord(string s)
+        {
+            // If input trim length is 0 then input consist of whitespace only. Return 0
+            if(s.Trim().Length == 0)
+                return 0;
+
+            List<string> list = new List<string>();
+            list.AddRange(s.Split(" ").ToList());
+            list.RemoveAll(x => string.IsNullOrWhiteSpace(x));
+            return list.Last().Length;
+        }
     }
 
 }
