@@ -15,7 +15,7 @@ namespace CSharpUtility.Algorithms
         /// Sliding Window Problem
         /// Alternative Solution Nick White: https://www.youtube.com/watch?v=XFPHg5KjHoo
         /// </summary>
-        public int[] findLongestSubarrayBySum(int[] src, int sum)
+        public int[] FindLongestSubarrayBySum(int[] src, int sum)
         {
             int[] result = { -1, -1 };
             int leftIdx = 0;
@@ -62,7 +62,7 @@ namespace CSharpUtility.Algorithms
         /// </summary>
         /// <param name="src"></param>
         /// <returns></returns>
-        public bool isPalindrome(string src = "abcba")
+        public bool IsPalindrome(string src = "abcba")
         {
             bool result = true;
             int head = 0;
@@ -84,7 +84,7 @@ namespace CSharpUtility.Algorithms
         }
 
         /// <summary>
-        /// TODO
+        /// Two Sum Problem
         /// </summary>
         /// <param name="nums"></param>
         /// <param name="target"></param>
@@ -117,13 +117,12 @@ namespace CSharpUtility.Algorithms
         }
 
         /// <summary>
-        /// TODO
+        /// Find First Unique Character in a Given String
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>
-        public int FirstUniqChar(string s)
+        public int FirstUniqueChar(string s)
         {
-
             // Length of English Alphabet is 26
             int[] lettersArr = new int[26];
 
@@ -143,64 +142,6 @@ namespace CSharpUtility.Algorithms
             }
 
             return -1;
-        }
-
-        public void BFS(int src)
-        {
-            // O(V + E) time
-            // O(V) space (for visited array)
-            Queue<int> queue = new Queue<int>();
-            bool[] visited = new bool[5];
-            int[][] adjacent = new int[5][];
-
-            visited[src] = true;
-            queue.Enqueue(src);
-            int current;
-            while (queue.Any())
-            {
-                current = queue.Dequeue();
-                Console.WriteLine(current);
-                int[] currentAdjacents = adjacent[current];
-                foreach (int adj in currentAdjacents)
-                {
-                    if(visited[adj] == false)
-                    {
-                        visited[adj] = true;
-                        queue.Enqueue(adj);
-                    }
-                }
-            }
-        }
-
-        public int V;
-        public int[] adjacents;
-        public void DFS()
-        {
-            // visited array for all vertices
-            bool[] visited = new bool[V];
-
-            for (int i = 0; i < V; i++)
-            {
-                if(visited[i] == false)
-                {
-                    DFSUtil(i, visited);
-                }
-            }
-
-        }
-
-        public void DFSUtil(int v, bool[] visited)
-        {
-            visited[v] = true;
-            Console.WriteLine(v);
-
-            foreach (var adj in adjacents)
-            {
-                if(visited[adj] == false)
-                {
-                    DFSUtil(adj, visited);
-                }
-            }
         }
 
         /// <summary>
@@ -232,6 +173,69 @@ namespace CSharpUtility.Algorithms
             list.RemoveAll(x => string.IsNullOrWhiteSpace(x));
             return list.Last().Length;
         }
+
+        // TODO
+        #region Graphs
+
+        public void BFS(int src)
+        {
+            // O(V + E) time
+            // O(V) space (for visited array)
+            Queue<int> queue = new Queue<int>();
+            bool[] visited = new bool[5];
+            int[][] adjacent = new int[5][];
+
+            visited[src] = true;
+            queue.Enqueue(src);
+            int current;
+            while (queue.Any())
+            {
+                current = queue.Dequeue();
+                Console.WriteLine(current);
+                int[] currentAdjacents = adjacent[current];
+                foreach (int adj in currentAdjacents)
+                {
+                    if (visited[adj] == false)
+                    {
+                        visited[adj] = true;
+                        queue.Enqueue(adj);
+                    }
+                }
+            }
+        }
+
+        public int V;
+        public int[] adjacents;
+        public void DFS()
+        {
+            // visited array for all vertices
+            bool[] visited = new bool[V];
+
+            for (int i = 0; i < V; i++)
+            {
+                if (visited[i] == false)
+                {
+                    DFSUtil(i, visited);
+                }
+            }
+
+        }
+
+        public void DFSUtil(int v, bool[] visited)
+        {
+            visited[v] = true;
+            Console.WriteLine(v);
+
+            foreach (var adj in adjacents)
+            {
+                if (visited[adj] == false)
+                {
+                    DFSUtil(adj, visited);
+                }
+            }
+        }
+
+        #endregion
     }
 
 }
