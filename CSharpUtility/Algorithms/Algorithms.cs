@@ -44,13 +44,13 @@ namespace CSharpUtility.Algorithms
                 {
                     if (rightIdx < src.Length)
                     {
-                        // Since outer while loop works for right index which is eqaul to length of source
+                        // Since outer while loop works for right index which is equal to length of source
                         // Hence, we should avoid indexing with that
                         // Defensive
                         currentSum += src[rightIdx];
                     }
 
-                    // increase right index unitl we reach or pass desired sum
+                    // increase right index until we reach or pass desired sum
                     ++rightIdx;
                 }
             }
